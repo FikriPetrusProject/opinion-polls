@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
 import NavBar from '../components/NavBar'
 
-
 const HomePage = () => {
   const polls = [
     {
@@ -18,12 +17,12 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-blue-400">
-      <Navbar />
+      <NavBar />
       <div className="p-4 text-white">
-        <h2 className="text-2xl font-bold mb-4">Active Polls</h2>
+        <h2 className="text-xl font-bold mb-4">Active Polls</h2>
         <div className="grid gap-4">
           {polls.map((poll, i) => (
-            <div key={i} className="bg-blue-600 p-4 rounded shadow">
+            <div key={i} className="bg-blue-300 p-4 rounded shadow">
               <p className="font-semibold">{poll.question}</p>
               <ul className="list-disc pl-5 mt-2">
                 {poll.options.map((opt, idx) => (
