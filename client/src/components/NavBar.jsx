@@ -6,7 +6,7 @@ const NavBar = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="flex justify-between p-4 bg-blue-700 text-white">
+    <div className="flex justify-between p-4 bg-blue-400 text-white">
       <div className="text-xl font-bold">{`{O}ptions`}</div>
       <button
         onClick={() => {
