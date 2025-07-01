@@ -9,3 +9,5 @@ const errorHandler = (err, req, res, next) => {
     res.status(code).json({ message })
 
 }
+
+module.exports = errorHandler
