@@ -42,6 +42,13 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+
+    await queryInterface.addConstraint("votes", {
+      fields: ["user_id", "poll_id"],
+      type: "unique",
+      name: "unique_vote_per_user_per_poll",
+    });
+
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Votes');
