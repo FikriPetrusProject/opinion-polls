@@ -11,15 +11,28 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Vote.belongsTo(models.User, { foreignKey: "User_Id" })
+      Vote.belongsTo(models.Poll, { foreignKey: "Poll_Id" })
+      Vote.belongsTo(models.Option, { foreignKey: "Option_Id" })
     }
   }
   Vote.init({
-    User_Id: DataTypes.INTEGER,
-    Poll_Id: DataTypes.INTEGER,
-    Option_Id: DataTypes.STRING
+    User_Id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    Poll_Id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    Option_Id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Vote',
+    timestamps: true
   });
   return Vote;
 };

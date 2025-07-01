@@ -11,14 +11,23 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Poll.belongsTo(models.User, { foreignKey: "User_Id" })
     }
   }
   Poll.init({
-    question: DataTypes.TEXT,
+    question: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "Question cannot be empty" },
+        notNull: { msg: "Question cannot be empty" }
+      }
+    },
     User_Id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Poll',
+    timestamps: true
   });
   return Poll;
 };

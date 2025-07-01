@@ -11,14 +11,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Option.belongsTo(models.Poll, { foreignKey: "Poll_Id" })
     }
   }
   Option.init({
-    Poll_Id: DataTypes.INTEGER,
-    text: DataTypes.STRING
+    Poll_Id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    text: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "Text cannot be empty" },
+        notEmpty: { msg: "Text cannot be empty" }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Option',
+    timestamps: true
   });
   return Option;
 };
