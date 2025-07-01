@@ -26,7 +26,7 @@ module.exports = {
         }
       },
       Option_Id: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: "Options",
@@ -43,8 +43,8 @@ module.exports = {
       }
     });
 
-    await queryInterface.addConstraint("votes", {
-      fields: ["user_id", "poll_id"],
+    await queryInterface.addConstraint("Votes", {
+      fields: ["User_Id", "Poll_Id"],
       type: "unique",
       name: "unique_vote_per_user_per_poll",
     });

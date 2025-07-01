@@ -26,7 +26,7 @@ module.exports = {
         allowNull: false,
         defaultValue: "local"
       },
-      goodle_id: {
+      google_id: {
         type: Sequelize.STRING,
         allowNull: true
       },

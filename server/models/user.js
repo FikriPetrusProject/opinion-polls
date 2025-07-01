@@ -11,16 +11,37 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Poll, { foreignKey: "User_Id" }),
+        User.hasMany(models.Vote, { foreignKey: "User_Id" })
     }
   }
   User.init({
     name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      unique: { msg: "Email has been taken" },
+      allowNull: false,
+      validate: {
+        notNull: { msg: "Email cannot be empty" },
+        notEmpty: { msg: "Email cannot be empty" }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "Password cannot be empty" },
+        notEmpty: { msg: "Password cannot be empty" }
+      }
+
+    },
     provider: DataTypes.STRING,
-    goodle_id: DataTypes.STRING,
+    google_id: DataTypes.STRING,
     avatar_url: DataTypes.TEXT,
-    role: DataTypes.STRING
+    role: {
+      type: DataTypes.STRING,
+      defaultValue: "user"
+    }
   }, {
     sequelize,
     modelName: 'User',
