@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-import NavBar from '../components/NavBar';
 
 const AddManual = () => {
   const [question, setQuestion] = useState('');
@@ -36,8 +35,7 @@ const AddManual = () => {
   };
 
   return (
-    <div className="min-h-screen bg-blue-400">
-      <NavBar />
+
       <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">Create Manual Poll</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -68,7 +66,6 @@ const AddManual = () => {
           </button>
         </form>
       </div>
-    </div>
   );
 };
 
