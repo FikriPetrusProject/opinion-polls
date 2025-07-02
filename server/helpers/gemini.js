@@ -19,7 +19,7 @@ const pollTopic = async (topic, choice = 4) => {
 
     const result = await model.generateContent(prompt);
     const response = result.response;
-    
+
     if (!response || !response.text()) {
         throw new Error("Gemini timeout.");
     }
@@ -61,4 +61,27 @@ const summarizePoll = async (question, options = []) => {
 
 }
 
-module.exports = { pollTopic, summarizePoll };
+const summarizeResult = async (question, options = []) => {
+    const prompt = `
+You are a helpful assistant that summarizes poll results.
+
+Poll Question:
+"${question}"
+
+Poll Options and Votes:
+${options.map((opt, i) => `${i + 1}. ${opt.text} - ${opt.votes} votes`).join('\n')}
+
+Write a short and neutral summary describing what the poll results indicate. Mention the most voted option without opinion or exaggeration.
+`;
+
+    const result = await model.generateContent(prompt);
+    const response = result.response;
+
+    if (!response || !response.text()) 
+        throw new Error("Gemini timeout.");
+
+
+
+};
+
+module.exports = { pollTopic, summarizePoll, summarizeResult };

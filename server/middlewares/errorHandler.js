@@ -6,7 +6,7 @@ const errorHandler = (err, req, res, next) => {
     let code = 500
     let message = "Internal Server Error"
 
-    
+
     if (err.message === "Gemini timeout.") {
         code = 503
         message = "Service Timeout"
@@ -28,6 +28,9 @@ const errorHandler = (err, req, res, next) => {
     } else if (err.message === "ALREADY_VOTED") {
         code = 400;
         message = "You have already voted on this poll";
+    } else if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
+        code = 400;
+        message = err.errors[0].message
     }
 
     res.status(code).json({ message })

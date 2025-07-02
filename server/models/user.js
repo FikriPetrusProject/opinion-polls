@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.Poll, { foreignKey: "User_Id" }),
-      User.hasMany(models.Vote, { foreignKey: "User_Id" })
+        User.hasMany(models.Vote, { foreignKey: "User_Id" })
     }
   }
   User.init({
@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: { msg: "Email cannot be empty" },
-        notEmpty: { msg: "Email cannot be empty" }
+        notEmpty: { msg: "Email cannot be empty" },
+        isEmail: { msg: "Invalid Email format" }
       }
     },
     password: {
