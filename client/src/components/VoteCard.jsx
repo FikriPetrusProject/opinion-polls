@@ -50,7 +50,6 @@ const VoteCard = () => {
     const newSocket = io("http://localhost:3000");
     setSocket(newSocket);
 
-    console.log(`⚠️`, user,user?.name)
     newSocket.emit("join-room", roomId);
     toast.info(`🟢 ${user?.name || "User"} joined the room`);
 
