@@ -1,4 +1,5 @@
 const { Vote, Poll, Option } = require("../models");
+const { io } = require("../app");
 
 class VoteController {
     static async castVote(req, res, next) {
@@ -34,6 +35,13 @@ class VoteController {
                 Option_Id: optionId
             });
 
+            // Real-time update part
+            io.emit("poll-update", {
+                pollId,
+                optionId,
+                userId
+            });
+
             return res.status(201).json({
                 message: "Vote submitted successfully",
                 vote
@@ -43,10 +51,9 @@ class VoteController {
             if (err.name === "SequelizeUniqueConstraintError") {
                 err.message = "ALREADY_VOTED";
             }
-            next(err); // pass to your error handler
+            next(err);
         }
     }
-
 }
 
-module.exports = VoteController
+module.exports = VoteController;
