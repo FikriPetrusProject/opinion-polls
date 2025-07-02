@@ -18,6 +18,15 @@ const errorHandler = (err, req, res, next) => {
     } else if (err.message === "UNAUTHORIZED") {
         code = 401
         message = "Unauthorized access"
+    } else if (err.message === "POLL_NOT_FOUND") {
+        code = 404;
+        message = "Poll not found";
+    } else if (err.message === "OPTION_NOT_FOUND") {
+        code = 400;
+        message = "Invalid option for this poll";
+    } else if (err.message === "ALREADY_VOTED") {
+        code = 400;
+        message = "You have already voted on this poll";
     }
 
     res.status(code).json({ message })
