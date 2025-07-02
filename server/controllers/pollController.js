@@ -1,5 +1,7 @@
 const { pollTopic, summarizePoll } = require("../helpers/gemini")
 const { Poll, Option } = require("../models")
+const { getIO } = require("../socket");
+const io = getIO();
 
 class PollController {
 

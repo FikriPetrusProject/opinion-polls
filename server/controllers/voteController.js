@@ -1,5 +1,6 @@
 const { Vote, Poll, Option } = require("../models");
-const { io } = require("../app");
+const { getIO } = require("../socket");
+const io = getIO();
 
 class VoteController {
     static async castVote(req, res, next) {
