@@ -12,7 +12,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     register(form.name, form.email, form.password)
-    navigate('/homepage')
+    navigate('/login')
   }
 
   return (
