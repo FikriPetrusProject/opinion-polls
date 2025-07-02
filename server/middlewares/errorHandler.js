@@ -22,7 +22,7 @@ const errorHandler = (err, req, res, next) => {
         code = 404;
         message = "Poll not found";
     } else if (err.message === "OPTION_NOT_FOUND") {
-        code = 400;
+        code = 404;
         message = "Invalid option for this poll";
     } else if (err.message === "ALREADY_VOTED") {
         code = 400;

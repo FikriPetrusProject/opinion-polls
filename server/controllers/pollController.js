@@ -1,8 +1,7 @@
-const { pollTopic, summarizePoll } = require("../helpers/gemini");
-const { Poll, Option } = require("../models");
-const { io } = require("../app"); // make sure io is exported from app.js
+const { pollTopic, summarizePoll } = require("../helpers/gemini")
+const { Poll, Option } = require("../models")
+const { getIO } = require("../socket");
 
-const activeRooms = {}; // pollId: { timer, pollId, question, options }
 
 class PollController {
   static async userCreatePoll(req, res, next) {
@@ -25,6 +24,15 @@ class PollController {
       }));
 
       await Option.bulkCreate(optionsRecord);
+            await Option.bulkCreate(optionsRecord)
+
+            const io = getIO();
+            io.emit("poll-created", {
+                id: poll.id,
+                question: poll.question,
+                options: options, // array of strings
+                creator: user.username || user.email // optional
+            });
 
       const summary = await summarizePoll(question, options);
 
@@ -93,6 +101,31 @@ class PollController {
       };
 
       const summary = await summarizePoll(question, options);
+            let options = await pollTopic(topic, inputChoice)
+
+            let question = `
+             What is your opinion on ${topic}`
+
+            const poll = await Poll.create({
+                question,
+                User_Id: user.id,
+            })
+
+            const optionsRecords = options.map(answers => ({
+                Poll_Id: poll.id,
+                text: answers
+            }))
+
+            await Option.bulkCreate(optionsRecords)
+
+            io.emit("poll-created", {
+                id: poll.id,
+                question: poll.question,
+                options: options, // array of strings
+                creator: user.username || user.email // optional
+            });
+
+            const summary = await summarizePoll(question, options)
 
       res.status(201).json({
         message: "Poll created with AI help",

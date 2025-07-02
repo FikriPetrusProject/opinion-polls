@@ -1,5 +1,5 @@
 const { Vote, Poll, Option } = require("../models");
-const { io } = require("../app");
+const { getIO } = require("../socket");
 
 class VoteController {
   static async castVote(req, res, next) {
@@ -17,16 +17,32 @@ class VoteController {
       const existingVote = await Vote.findOne({ where: { User_Id: userId, Poll_Id: pollId } });
       if (existingVote) throw new Error("ALREADY_VOTED");
 
-      const vote = await Vote.create({ User_Id: userId, Poll_Id: pollId, Option_Id: optionId });
+            const vote = await Vote.create({
+                User_Id: userId,
+                Poll_Id: pollId,
+                Option_Id: optionId
+            });
 
-      io.emit("vote-update", { pollId, optionId }); // emit to all clients in room
+            // Real-time update part
+            const io = getIO();
+            io.emit("vote-update", {
+                pollId,
+                optionId,
+                userId
+            });
 
-      return res.status(201).json({ message: "Vote submitted successfully", vote });
-    } catch (err) {
-      if (err.name === "SequelizeUniqueConstraintError") err.message = "ALREADY_VOTED";
-      next(err);
+            return res.status(201).json({
+                message: "Vote submitted successfully",
+                vote
+            });
+
+        } catch (err) {
+            if (err.name === "SequelizeUniqueConstraintError") {
+                err.message = "ALREADY_VOTED";
+            }
+            next(err);
+        }
     }
-  }
 }
 
 module.exports = VoteController;
