@@ -8,6 +8,7 @@ const router = express.Router();
 router.post("/register", UserController.register)
 router.post("/login", UserController.login)
 
+router.get("/polls", isLogin, PollController.getAllPolls);
 router.post("/polls/manual", isLogin, PollController.userCreatePoll)
 router.post("/polls/ai", isLogin, PollController.geminiCreatePoll)
 

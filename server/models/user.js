@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.Poll, { foreignKey: "User_Id" }),
-        User.hasMany(models.Vote, { foreignKey: "User_Id" })
+      User.hasMany(models.Vote, { foreignKey: "User_Id" })
     }
   }
   User.init({

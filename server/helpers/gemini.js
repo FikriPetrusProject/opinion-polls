@@ -34,8 +34,6 @@ const pollTopic = async (topic, choice = 4) => {
 };
 
 
-
-
 const summarizePoll = async (question, options = []) => {
 
     const prompt = `

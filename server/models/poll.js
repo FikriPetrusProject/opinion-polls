@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Poll.belongsTo(models.User, { foreignKey: "User_Id" })
+      Poll.hasMany(models.Option, { foreignKey: 'Poll_Id' });
     }
   }
   Poll.init({
