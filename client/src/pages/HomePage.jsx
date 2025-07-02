@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router'; // ✅ Fix import
 import NavBar from '../components/NavBar';
 import axios from 'axios';
 
@@ -29,9 +29,9 @@ const HomePage = () => {
       <div className="max-w-3xl mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Active Polls</h2>
         <div>
-          {polls.map((poll, index) => (
+          {polls.map((poll) => (
             <div key={poll.id} className="mb-10">
-              <Link to={`/votecard/${poll.id}`}>
+              <Link to={`/votecard/${poll.id}`} state={{ poll }}>
                 <div className="bg-gray-50 p-4 rounded border hover:shadow-md transition">
                   <h3 className="text-lg font-semibold text-center text-gray-800 mb-3">{poll.question}</h3>
                   <div className="grid grid-cols-2 gap-3 mb-3">
