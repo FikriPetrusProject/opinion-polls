@@ -2,15 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
-"scripts": {
-    "test": "jest --testTimeout=2000 --verbose --detectOpenHandles --forceExit",
-    "testuser": "jest --testTimeout=2000 --verbose --detectOpenHandles --forceExit user.test.js",
-    "testcuisine": "jest --testTimeout=2000 --verbose --detectOpenHandles --forceExit cuisine.test.js",
-    "seed": "sequelize-cli --env=test db:seed:all",
-    "reset": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-    "db:dev": "sequelize-cli db:drop && sequelize-cli db:create && sequelize-cli db:migrate && sequelize-cli db:seed:all",
-    "db:test": "sequelize-cli --env=test db:drop && sequelize-cli --env=test db:create && sequelize-cli --env=test db:migrate",
-    "db:pro": "sequelize-cli --env=production db:drop && sequelize-cli --env=production db:create && sequelize-cli --env=production db:migrate && sequelize-cli --env=production db:seed:all"
+  "scripts": {
+    "dbreset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate",
+    "createseed": "npx sequelize-cli seed:generate --name users &&npx sequelize-cli seed:generate --name polls &&npx sequelize-cli seed:generate --name options &&npx sequelize-cli seed:generate --name votes",
+    "seed": "npx sequelize db:seed:undo:all && npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",

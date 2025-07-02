@@ -4,16 +4,16 @@ npx sequelize-cli seed:generate --name options
 npx sequelize-cli seed:generate --name votes
 
 [USERS]
-const options = require("../data/options.json");
+let users = require("../data/users.json");
 
-polls.forEach((el) => {
+users.forEach((el) => {
     const salt = bcrypt.genSaltSync(8);
     const hash = bcrypt.hashSync(el.password, salt);
     el.password = hash;
     el.createdAt = new Date();
     el.updatedAt = new Date();
 });
-    await queryInterface.bulkInsert("Users", polls, {});
+    await queryInterface.bulkInsert("Users", users, {});
 .........
     await queryInterface.bulkDelete("Users", null, {});
 
