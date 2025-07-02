@@ -4,7 +4,6 @@
   "main": "index.js",
   "scripts": {
     "dbreset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate",
-    "createseed": "npx sequelize-cli seed:generate --name users &&npx sequelize-cli seed:generate --name polls &&npx sequelize-cli seed:generate --name options &&npx sequelize-cli seed:generate --name votes",
     "seed": "npx sequelize db:seed:undo:all && npx sequelize db:seed:all"
   },
   "keywords": [],
@@ -19,7 +18,8 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3",
-    "sequelize": "^6.37.7"
+    "sequelize": "^6.37.7",
+    "socket.io": "^4.8.1"
   },
   "devDependencies": {
     "dotenv": "^17.0.0",

@@ -11,6 +11,6 @@ router.post("/login", UserController.login)
 router.post("/polls/manual", isLogin, PollController.userCreatePoll)
 router.post("/polls/ai", isLogin, PollController.geminiCreatePoll)
 
-router.post("polls/:id/vote", isLogin, VoteController.castVote)
+router.post("/polls/:id/vote", isLogin, VoteController.castVote)
 
 module.exports = router
