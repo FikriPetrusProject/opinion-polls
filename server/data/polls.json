@@ -1,0 +1,14 @@
+[
+  {
+    "question": "What's your favorite programming language?",
+    "User_Id": 1,
+    "createdAt": "2025-07-01T00:00:00Z",
+    "updatedAt": "2025-07-01T00:00:00Z"
+  },
+  {
+    "question": "Which frontend framework do you prefer?",
+    "User_Id": 2,
+    "createdAt": "2025-07-01T00:00:00Z",
+    "updatedAt": "2025-07-01T00:00:00Z"
+  }
+]
