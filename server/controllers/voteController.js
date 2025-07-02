@@ -1,6 +1,5 @@
 const { Vote, Poll, Option } = require("../models");
 const { getIO } = require("../socket");
-const io = getIO();
 
 class VoteController {
     static async castVote(req, res, next) {
@@ -37,7 +36,8 @@ class VoteController {
             });
 
             // Real-time update part
-            io.emit("poll-update", {
+            const io = getIO();
+            io.emit("vote-update", {
                 pollId,
                 optionId,
                 userId

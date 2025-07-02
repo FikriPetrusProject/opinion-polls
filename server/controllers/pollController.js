@@ -1,7 +1,7 @@
 const { pollTopic, summarizePoll } = require("../helpers/gemini")
 const { Poll, Option } = require("../models")
 const { getIO } = require("../socket");
-const io = getIO();
+
 
 class PollController {
 
@@ -25,6 +25,14 @@ class PollController {
             }));
 
             await Option.bulkCreate(optionsRecord)
+
+            const io = getIO();
+            io.emit("poll-created", {
+                id: poll.id,
+                question: poll.question,
+                options: options, // array of strings
+                creator: user.username || user.email // optional
+            });
 
             const summary = await summarizePoll(question, options)
 
@@ -65,6 +73,13 @@ class PollController {
             }))
 
             await Option.bulkCreate(optionsRecords)
+
+            io.emit("poll-created", {
+                id: poll.id,
+                question: poll.question,
+                options: options, // array of strings
+                creator: user.username || user.email // optional
+            });
 
             const summary = await summarizePoll(question, options)
 
