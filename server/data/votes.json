@@ -1,0 +1,6 @@
+[
+  { "User_Id": 1, "Poll_Id": 1, "Option_Id": 2, "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" },
+  { "User_Id": 2, "Poll_Id": 1, "Option_Id": 1, "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" },
+  { "User_Id": 1, "Poll_Id": 2, "Option_Id": 6, "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" },
+  { "User_Id": 2, "Poll_Id": 2, "Option_Id": 5, "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" }
+]

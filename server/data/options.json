@@ -1,0 +1,11 @@
+[
+  { "Poll_Id": 1, "text": "JavaScript", "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" },
+  { "Poll_Id": 1, "text": "Python",      "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" },
+  { "Poll_Id": 1, "text": "Go",          "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" },
+  { "Poll_Id": 1, "text": "Rust",        "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" },
+
+  { "Poll_Id": 2, "text": "React",       "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" },
+  { "Poll_Id": 2, "text": "Vue",         "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" },
+  { "Poll_Id": 2, "text": "Svelte",      "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" },
+  { "Poll_Id": 2, "text": "Angular",     "createdAt": "2025-07-01T00:00:00Z", "updatedAt": "2025-07-01T00:00:00Z" }
+]
