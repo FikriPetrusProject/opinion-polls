@@ -6,33 +6,35 @@ const isLogin = async (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      throw { name: "UNAUTHORIZED", message: "Access token required" };
+      throw new Error("UNAUTHORIZED");
     }
 
     const token = authHeader.split(" ")[1];
     if (!token) {
-      throw { name: "UNAUTHORIZED", message: "Invalid token format" };
+      throw new Error("UNAUTHORIZED");
     }
 
-    const payload = verifyToken(token);
+    let payload;
+    try {
+      payload = verifyToken(token);
+    } catch (err) {
+      throw new Error("UNAUTHORIZED");
+    }
 
     const user = await User.findByPk(payload.id);
     if (!user) {
-      throw { name: "UNAUTHORIZED", message: "User not found" };
+      throw new Error("UNAUTHORIZED");
     }
 
     req.user = {
       id: user.id,
       email: user.email,
-      username: user.username || user.name, // if available
+      username: user.username || user.name,
     };
 
     next();
-  } catch (error) {
-    if (error.name === "JsonWebTokenError") {
-      error = { name: "UNAUTHORIZED", message: "Invalid or expired token" };
-    }
-    next(error);
+  } catch (err) {
+    next(err);
   }
 };
 
