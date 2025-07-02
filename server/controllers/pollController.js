@@ -1,4 +1,3 @@
-const { text } = require("body-parser")
 const { pollTopic, summarizePoll } = require("../helpers/gemini")
 const { Poll, Option } = require("../models")
 
