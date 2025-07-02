@@ -11,9 +11,8 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (form.password !== form.confirm) return alert('Passwords do not match')
     register(form.name, form.email, form.password)
-    navigate('/homepage')
+    navigate('/login')
   }
 
   return (
