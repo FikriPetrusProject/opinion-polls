@@ -25,7 +25,7 @@ function App() {
     <Routes>
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route element={<AuthLayout />}>
+      <Route path="/" element={<AuthLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/votecard/:roomId" element={<VoteCard />} />
         <Route path="/polls/manual" element={<AddManual />} />

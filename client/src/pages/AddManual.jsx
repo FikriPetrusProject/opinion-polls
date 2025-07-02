@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router';
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 const AddManual = () => {
-  const [question, setQuestion] = useState('');
-  const [options, setOptions] = useState(['', '', '', '']);
+  const [question, setQuestion] = useState("");
+  const [options, setOptions] = useState(["", "", "", ""]);
   const navigate = useNavigate();
 
   const handleOptionChange = (index, value) => {
@@ -17,27 +17,29 @@ const AddManual = () => {
     e.preventDefault();
     try {
       await axios.post(
-        'http://localhost:3000/polls/manual',
+        "http://localhost:3000/polls/manual",
         {
           question,
-          options
+          options,
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`
-          }
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
         }
       );
-      navigate('/');
+      navigate("/");
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-
-      <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">Create Manual Poll</h2>
+    <div className="min-h-screen flex justify-center items-center bg-blue-400">
+      <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-4 text-center text-blue-600">
+          Create Manual Poll
+        </h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="text"
@@ -66,6 +68,7 @@ const AddManual = () => {
           </button>
         </form>
       </div>
+    </div>
   );
 };
 
