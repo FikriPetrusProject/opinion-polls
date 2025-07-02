@@ -19,7 +19,7 @@ const AddAI = () => {
           },
         }
       );
-      navigate('/homepage');
+      navigate('/');
     } catch (err) {
       console.error(err);
     }

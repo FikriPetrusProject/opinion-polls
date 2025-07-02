@@ -36,22 +36,6 @@ class PollController {
       };
       io.emit("room-data", payload);
 
-      // Setup 60s room timer
-      if (activeRooms[poll.id]) clearTimeout(activeRooms[poll.id].timer);
-      activeRooms[poll.id] = {
-        pollId: poll.id,
-        question: poll.question,
-        options: insertedOptions,
-        timer: setTimeout(async () => {
-          const summary = await summarizePoll(poll.question, options);
-          io.emit("room-ended", summary);
-          delete activeRooms[poll.id];
-
-          // Optional: cleanup database
-          await Poll.destroy({ where: { id: poll.id } });
-        }, 60000),
-      };
-
       const summary = await summarizePoll(question, options);
 
       res.status(201).json({
@@ -95,22 +79,6 @@ class PollController {
         options: insertedOptions.map((opt) => ({ id: opt.id, text: opt.text })),
       };
       io.emit("room-data", payload);
-
-      // Setup 60s room timer
-      if (activeRooms[poll.id]) clearTimeout(activeRooms[poll.id].timer);
-      activeRooms[poll.id] = {
-        pollId: poll.id,
-        question,
-        options: insertedOptions,
-        timer: setTimeout(async () => {
-          const summary = await summarizePoll(question, options);
-          io.emit("room-ended", summary);
-          delete activeRooms[poll.id];
-
-          // Optional: cleanup database
-          await Poll.destroy({ where: { id: poll.id } });
-        }, 60000),
-      };
 
       const summary = await summarizePoll(question, options);
 

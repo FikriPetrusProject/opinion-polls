@@ -29,7 +29,7 @@ const AddManual = () => {
           }
         }
       );
-      navigate('/homepage');
+      navigate('/');
     } catch (err) {
       console.error(err);
     }

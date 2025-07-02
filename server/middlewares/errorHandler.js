@@ -6,6 +6,7 @@ const errorHandler = (err, req, res, next) => {
     let code = 500
     let message = "Internal Server Error"
 
+    
     if (err.message === "Gemini timeout.") {
         code = 503
         message = "Service Timeout"
