@@ -1,18 +1,20 @@
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+
+const SECRET = process.env.SECRET_JWT;
+
+if (!SECRET) {
+  throw new Error("Missing SECRET_JWT in environment variables");
+}
 
 const signToken = (payload) => {
-    const secret = process.env.SECRET_JWT
-    const token = jwt.sign(payload, secret)
-    return token
-}
+  return jwt.sign(payload, SECRET, { expiresIn: "24h" }); // Optional: add expiration
+};
 
 const verifyToken = (token) => {
-    const secret = process.env.SECRET_JWT
-    const decode = jwt.verify(token, secret)
-    return decode
-}
+  return jwt.verify(token, SECRET);
+};
 
 module.exports = {
-    signToken,
-    verifyToken
-}
+  signToken,
+  verifyToken,
+};

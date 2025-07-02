@@ -19,7 +19,7 @@ const pollTopic = async (topic, choice = 4) => {
 
     const result = await model.generateContent(prompt);
     const response = result.response;
-
+    
     if (!response || !response.text()) {
         throw new Error("Gemini timeout.");
     }
