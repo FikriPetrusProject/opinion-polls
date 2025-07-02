@@ -4,14 +4,16 @@
     "password": "postgres",
     "database": "opinion_dev",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "logging" : false
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging" : false
   },
   "production": {
     "use_env_variable": "SUPABASE_DATABASE_URL",
