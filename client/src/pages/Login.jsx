@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     login(form.email, form.password)
-    navigate('/')
+    navigate("/")
   }
 
   return (
