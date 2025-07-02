@@ -1,4 +1,12 @@
 import { useEffect, useState } from "react";
+import NavBar from "../components/NavBar";
+
+import { useAuth } from "../context/AuthContext"; // 👈 import AuthContext
+
+const HomePage = () => {
+  const [polls, setPolls] = useState([]);
+  const { user } = useAuth();
+
 import { Link, Navigate } from "react-router";
 import axios from "axios";
 
@@ -11,6 +19,8 @@ const HomePage = () => {
   }
 
   useEffect(() => {
+    if (!user) return; 
+
     const fetchPolls = async () => {
       try {
         const { data } = await axios.get("http://localhost:3000/polls", {
@@ -20,12 +30,12 @@ const HomePage = () => {
         });
         setPolls(data);
       } catch (err) {
-        console.error(err);
+        console.error("Failed to fetch polls:", err);
       }
     };
 
     fetchPolls();
-  }, []);
+  }, [user]);
 
   return (
     <div className="max-w-3xl mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
