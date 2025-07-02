@@ -24,16 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         notNull: { msg: "Question cannot be empty" }
       }
     },
-    User_Id: { type: DataTypes.INTEGER },
-    expiresAt: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    isClosed: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
-    }
+    User_Id: { type: DataTypes.INTEGER }
   }, {
     sequelize,
     modelName: 'Poll',
