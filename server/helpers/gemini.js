@@ -4,7 +4,7 @@ const apiKey = process.env.GEMINI_API;
 const genAI = new GoogleGenerativeAI(apiKey);
 
 //Gemini settings, "gemini-1.5-flash paling cepat"
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 // topic = "frontend framework"
 // choice = how many choices (default = 4)
