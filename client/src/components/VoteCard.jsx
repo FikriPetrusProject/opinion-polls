@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, useLocation, Link } from "react-router";
+import { useParams, useNavigate, useLocation, Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import axios from "axios";
 import { toast } from "react-toastify";
