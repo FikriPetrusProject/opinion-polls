@@ -8,7 +8,7 @@ import AddManual from "./pages/AddManual";
 import AddAI from "./pages/AddAi";
 import NavBar from "./components/NavBar";
 
-const DOMAIN = "http://localhost:3000"
+const DOMAIN = "https://fikriprojects.site";
 // const DOMAIN = "http://localhost:3000"
 
 function AuthLayout() {
@@ -33,10 +33,10 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route element={<AuthLayout />}>
-        <Route path="/" element={<HomePage url={DOMAIN}/>} />
-        <Route path="/votecard/:roomId" element={<VoteCard />} />
-        <Route path="/polls/manual" element={<AddManual />} />
-        <Route path="/polls/ai" element={<AddAI />} />
+        <Route path="/" element={<HomePage url={DOMAIN} />} />
+        <Route path="/votecard/:roomId" element={<VoteCard url={DOMAIN} />} />
+        <Route path="/polls/manual" element={<AddManual url={DOMAIN}/>} />
+        <Route path="/polls/ai" element={<AddAI url={DOMAIN}/>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>

@@ -1,8 +1,11 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify'; // ✅ Import toast
-const url = "http://localhost:3000"
+
 // const DOMAIN = "http://localhost:3000"
+const DOMAIN = "https://fikriprojects.site";
+const url = DOMAIN
+
 
 const AuthContext = createContext();
 

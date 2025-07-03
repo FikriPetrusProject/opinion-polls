@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import axios from "axios";
 
-const AddAI = () => {
-  const [topic, setTopic] = useState('');
+const AddAI = ({ url }) => {
+  const [topic, setTopic] = useState("");
   const [choice, setChoice] = useState(4);
   const navigate = useNavigate();
 
@@ -11,15 +11,15 @@ const AddAI = () => {
     e.preventDefault();
     try {
       await axios.post(
-        'http://localhost:3000/polls/ai',
+        `${url}/polls/ai`,
         { topic, choice },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },
         }
       );
-      navigate('/');
+      navigate("/");
     } catch (err) {
       console.error(err);
     }

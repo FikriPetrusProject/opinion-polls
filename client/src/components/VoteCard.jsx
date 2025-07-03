@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
 
-const VoteCard = () => {
+const VoteCard = ({ url }) => {
   const { roomId } = useParams();
   const { user } = useAuth();
   const { state } = useLocation();
@@ -21,14 +21,11 @@ const VoteCard = () => {
   useEffect(() => {
     const fetchPollDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:3000/polls/${roomId}/details`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-            },
-          }
-        );
+        const { data } = await axios.get(`${url}/polls/${roomId}/details`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        });
 
         setQuestion(data.question);
         setOptions(data.options);
@@ -47,7 +44,7 @@ const VoteCard = () => {
 
   // ✅ Setup socket connection
   useEffect(() => {
-    const newSocket = io("http://localhost:3000");
+    const newSocket = io(`${url}`);
     setSocket(newSocket);
 
     newSocket.emit("join-room", roomId);
@@ -113,14 +110,11 @@ const VoteCard = () => {
   // ✅ Get summary manually
   const handleGetSummary = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:3000/polls/${roomId}/summary`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          },
-        }
-      );
+      const res = await axios.get(`${url}/polls/${roomId}/summary`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
       setSummary(res.data.summary);
       toast.info("📝 Summary loaded");
     } catch (err) {
