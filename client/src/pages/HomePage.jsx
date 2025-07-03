@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import { Link, Navigate } from "react-router";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
