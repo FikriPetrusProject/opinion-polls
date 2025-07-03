@@ -4,7 +4,7 @@ const apiKey = process.env.GEMINI_API;
 const genAI = new GoogleGenerativeAI(apiKey);
 
 //Gemini settings, "gemini-1.5-flash paling cepat"
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 // topic = "frontend framework"
 // choice = how many choices (default = 4)
@@ -77,7 +77,7 @@ Write a short and neutral summary describing what the poll results indicate. Men
     const result = await model.generateContent(prompt);
     const response = result.response;
 
-    if (!response || !response.text()) 
+    if (!response || !response.text())
         throw new Error("Gemini timeout.");
 
 

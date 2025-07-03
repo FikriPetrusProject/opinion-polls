@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
-const AddManual = () => {
+const AddManual = ({url}) => {
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState(["", "", "", ""]);
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const AddManual = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:3000/polls/manual",
+        `${url}/polls/manual`,
         {
           question,
           options,
