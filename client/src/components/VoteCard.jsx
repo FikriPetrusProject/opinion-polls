@@ -137,7 +137,7 @@ const VoteCard = () => {
         </h2>
       </div>
 
-      <div className="bg-white p-5 rounded-lg border-amber-400 border-4 border-double shadow hover:shadow-lg transition-all duration-200">
+      <div className="bg-white p-5 rounded-lg border-blue-400 border-4 border-double shadow hover:shadow-lg transition-all duration-200">
         <h3 className="text-lg font-semibold text-gray-800 text-center mb-4">
           {question}
         </h3>

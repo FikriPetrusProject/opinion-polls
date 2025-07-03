@@ -1,6 +1,8 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify'; // ✅ Import toast
+const url = "http://localhost:3000"
+// const DOMAIN = "http://localhost:3000"
 
 const AuthContext = createContext();
 
@@ -16,7 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const { data } = await axios.post('http://localhost:3000/login', { email, password });
+      const { data } = await axios.post(`${url}/login`, { email, password });
       localStorage.setItem('access_token', data.access_token);
       setUser({ email });
     } catch (err) {
@@ -27,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password) => {
     try {
-      await axios.post('http://localhost:3000/register', { name, email, password });
+      await axios.post(`${url}/register`, { name, email, password });
       await login(email, password);
     } catch (err) {
       toast.error(err.response?.data?.message || 'Register failed');
