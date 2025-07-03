@@ -1,26 +1,35 @@
-import { useState } from 'react'
-import { useAuth } from '../context/AuthContext'
-import { Link, useNavigate } from 'react-router'
-
+import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { Link, useNavigate } from 'react-router';
+import { toast } from 'react-toastify'; // ✅ import toast
 
 const Login = () => {
-  const { login } = useAuth()
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [form, setForm] = useState({ email: '', password: '' });
 
-  const [form, setForm] = useState({ email: '', password: '' })
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    login(form.email, form.password)
-    navigate('/')
-  }
+    if (!form.email || !form.password) {
+      toast.warning('Please fill in both email and password');
+      return;
+    }
+
+    try {
+      await login(form.email, form.password);
+      navigate('/');
+      toast.success('Login Successful lets poll 🗳️')
+    } catch (err) {
+      toast.error(err.message || 'Login failed. Please check your credentials.');
+    }
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-400">
+    <div className="bg-fixed bg-cover bg-center bg-[url('/bg.jpg')] min-h-screen flex items-center justify-center">
       <div className="flex flex-col items-center">
         <img src="/Options Logo.png" alt="Options Logo" className="w-32 mb-6" />
-        <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-80">
-
+        <form onSubmit={handleSubmit} className="bg-white p-8 rounded w-80 shadow-2xl">
           <input
             type="email"
             placeholder="Email"
@@ -44,12 +53,15 @@ const Login = () => {
           </button>
 
           <p className="text-sm mt-2 text-center">
-            Don’t have an account? <Link to="/register" className="text-blue-600">Register</Link>
+            Don’t have an account?{' '}
+            <Link to="/register" className="text-blue-600">
+              Register
+            </Link>
           </p>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
