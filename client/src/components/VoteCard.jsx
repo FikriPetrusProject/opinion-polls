@@ -79,7 +79,7 @@ const VoteCard = ({ url }) => {
 
     try {
       await axios.post(
-        `http://localhost:3000/polls/${roomId}/vote`,
+        `${url}/polls/${roomId}/vote`,
         { optionId },
         {
           headers: {
