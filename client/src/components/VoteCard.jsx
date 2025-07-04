@@ -91,11 +91,6 @@ const VoteCard = ({ url }) => {
       setVotedOptionId(optionId);
       toast.success(`✅ ${user?.name || "User"} voted`);
 
-      setOptions((prev) =>
-        prev.map((opt) =>
-          opt.id === optionId ? { ...opt, votes: opt.votes + 1 } : opt
-        )
-      );
     } catch (err) {
       if (err.response?.data?.message === "ALREADY_VOTED") {
         setHasVoted(true);

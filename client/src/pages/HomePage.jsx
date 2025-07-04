@@ -9,9 +9,7 @@ const HomePage = ({url}) => {
   const { user } = useAuth();
   const access_token = localStorage.getItem("access_token");
 
-  if (!access_token) {
-    return <Navigate to="/login" />;
-  }
+  
 
   useEffect(() => {
     if (!user) return;
@@ -32,6 +30,10 @@ const HomePage = ({url}) => {
     fetchPolls();
   }, [user]);
 
+  if (!access_token) {
+    return <Navigate to="/login" />;
+  }
+  
   return (
     <div className="bg-fixed bg-cover bg-center bg-[url('/bgHP.jpg')] min-h-screen flex items-center justify-center">
       <div className="bg-white/20 min-h-screen px-4 pt-10">
