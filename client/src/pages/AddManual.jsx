@@ -47,7 +47,6 @@ const AddManual = ({url}) => {
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Enter your question"
             className="p-2 border rounded"
-            required
           />
           {options.map((opt, index) => (
             <input
@@ -57,7 +56,6 @@ const AddManual = ({url}) => {
               onChange={(e) => handleOptionChange(index, e.target.value)}
               placeholder={`Option ${index + 1}`}
               className="p-2 border rounded"
-              required
             />
           ))}
           <button
